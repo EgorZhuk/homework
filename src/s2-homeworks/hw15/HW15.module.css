@@ -1,5 +1,6 @@
 .tech {
     width: 50vw;
+
 }
 
 .developer {
@@ -16,10 +17,18 @@
 
 .row {
     display: flex;
+    padding: 10px 17px;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .rowHeader {
     display: flex;
+    background-color: #E5E5E5;
+    text-transform: capitalize;
+    padding: 10px 17px;
+    font-weight: 600;
+    font-size: 14px;
+
 }
 
 .loading {

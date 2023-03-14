@@ -45,28 +45,48 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+                if (res) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
                 // делает студент
 
                 // сохранить пришедшие данные
 
                 //
             })
+        setLoading(false)
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
+        setPage(newPage)
+        setCount(newCount)
+        const pageQuery = newPage !==1 ? {page:newPage}: {}
+        const countQuery = newCount !==4 ? {count: newCount}: {}
+        const {count, page, ...lastQueries} = Object.fromEntries(searchParams)
+        const allQuery = {...pageQuery, ...countQuery, ...lastQueries}
+        sendQuery(allQuery)
         // делает студент
 
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        //@ts-ignore
+        setSearchParams(allQuery)
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
+        setSort(newSort)
+        setPage(1)
+
+        const sortQuery = newSort !== '' ? {sort: newSort}: {}
+        const {sort, page, ...lastQueries} = Object.fromEntries(searchParams)
+
+
+        const allQuery = {...sortQuery, ...lastQueries}
+
+        sendQuery(allQuery)
+
+        // @ts-ignore
+        setSearchParams(allQuery)
 
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
